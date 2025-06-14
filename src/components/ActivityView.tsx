@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, CheckCircle, ArrowRight, Volume2, ArrowLeft } from 'lucide-react';
+import { HelpCircle, CheckCircle, ArrowRight, Volume2, ArrowLeft, Zap } from 'lucide-react';
 import { mockActivities } from '../data/mockData';
 import { Activity } from '../types';
 import GuardianMessage from './GuardianMessage';
@@ -19,6 +19,7 @@ const ActivityView: React.FC<ActivityViewProps> = ({
   const [completed, setCompleted] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [needsHelp, setNeedsHelp] = useState(false);
+  const [currentPatternIndex, setCurrentPatternIndex] = useState(0);
 
   // Datos específicos por tipo de actividad
   const activityData = {
@@ -52,16 +53,27 @@ const ActivityView: React.FC<ActivityViewProps> = ({
     }
   };
 
-  const currentPattern = activityData.pattern.patterns[0];
+  const patterns = activityData.pattern.patterns;
+  const currentPattern = patterns[currentPatternIndex];
+  const sessionProgress = Math.round((currentPatternIndex / patterns.length) * 100);
 
   const handleOptionSelect = (option: string) => {
-    if (option === currentPattern.answer) {
+    if (option === currentPattern.answer && !completed) {
       setCompleted(true);
       setShowFeedback(true);
-      setTimeout(() => {
-        setShowFeedback(false);
-        onComplete?.();
-      }, 2000);
+      setTimeout(() => setShowFeedback(false), 1500);
+    }
+  };
+
+  const handleNext = () => {
+    if (!completed) return;
+    const nextIndex = currentPatternIndex + 1;
+    if (nextIndex < patterns.length) {
+      setCurrentPatternIndex(nextIndex);
+      setCompleted(false);
+      setSelectedPattern(null);
+    } else {
+      onComplete?.();
     }
   };
 
@@ -246,14 +258,14 @@ const ActivityView: React.FC<ActivityViewProps> = ({
             <span>Necesito ayuda</span>
           </button>
           
-          <button 
+          <button
             className={`flex-1 rounded-2xl py-4 px-6 font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
-              completed 
-                ? 'bg-green-500 text-white hover:bg-green-600' 
+              completed
+                ? 'bg-green-500 text-white hover:bg-green-600'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
             disabled={!completed}
-            onClick={onComplete}
+            onClick={handleNext}
           >
             <span>¡Listo!</span>
             <ArrowRight size={24} />
@@ -263,11 +275,17 @@ const ActivityView: React.FC<ActivityViewProps> = ({
         {/* Progreso de la sesión */}
         <div className="bg-white rounded-2xl p-4 shadow-md">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-600">Actividad 1 de 5</span>
-            <span className="text-sm font-bold text-blue-600">20%</span>
+            <span className="flex items-center space-x-1 text-sm font-medium text-gray-600">
+              <Zap className="text-yellow-500" size={16} />
+              <span>Actividad {currentPatternIndex + 1} de {patterns.length}</span>
+            </span>
+            <span className="text-sm font-bold text-yellow-600">{sessionProgress}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-3">
-            <div className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full w-1/5 transition-all duration-500"></div>
+          <div className="w-full bg-yellow-100 rounded-full h-3">
+            <div
+              className="bg-gradient-to-r from-yellow-400 to-orange-500 h-3 rounded-full transition-all duration-500"
+              style={{ width: `${sessionProgress}%` }}
+            ></div>
           </div>
         </div>
       </div>
