@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Home, BookOpen, Users, MessageCircle } from 'lucide-react';
 
 interface NavigationProps {
@@ -6,7 +6,7 @@ interface NavigationProps {
   onScreenChange: (screen: string) => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ currentScreen, onScreenChange }) => {
+const Navigation: FC<NavigationProps> = ({ currentScreen, onScreenChange }) => {
   const navItems = [
     { id: 'child', label: 'Niño', icon: Home, color: 'text-blue-500' },
     { id: 'activity', label: 'Actividad', icon: BookOpen, color: 'text-green-500' },

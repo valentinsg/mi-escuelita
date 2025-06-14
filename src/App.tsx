@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navigation from './components/Navigation';
 import ChildDashboard from './components/ChildDashboard';
 import ActivityView from './components/ActivityView';
@@ -39,7 +39,7 @@ function App() {
   const renderScreen = () => {
     switch (currentScreen) {
       case 'child':
-        return <ChildDashboard onSubjectSelect={handleSubjectSelect} />;
+        return <ChildDashboard onSubjectSelect={handleSubjectSelect}  />;
       case 'subject-levels':
         return selectedSubject ? (
           <SubjectLevels 
@@ -57,7 +57,7 @@ function App() {
           />
         );
       case 'parent':
-        return <ParentDashboard />;
+        return <ParentDashboard onSubjectSelect={handleSubjectSelect} />;
       case 'feedback':
         return <AIFeedback />;
       default:

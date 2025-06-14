@@ -2,8 +2,9 @@ import React from 'react';
 import { Star, BookOpen, Trophy, ChevronRight, Clock } from 'lucide-react';
 import { mockChild } from '../data/mockData';
 import GuardianMessage from './GuardianMessage';
+import { Subject } from '../types/index';
 
-const ChildDashboard: React.FC = () => {
+const ChildDashboard: React.FC<{ onSubjectSelect: (subject: Subject) => void }> = ({ onSubjectSelect }) => {
   const { name, avatar, currentGrade, overallProgress, subjects, achievements, totalPlayTime } = mockChild;
 
   const formatPlayTime = (minutes: number) => {
@@ -92,6 +93,7 @@ const ChildDashboard: React.FC = () => {
                 className={`bg-white rounded-2xl p-4 shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105 ${
                   subject.isActive ? 'cursor-pointer' : 'opacity-60'
                 }`}
+                onClick={() => onSubjectSelect(subject)}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">

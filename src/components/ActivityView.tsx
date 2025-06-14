@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { FC } from 'react';
 import { HelpCircle, CheckCircle, ArrowRight, Volume2, ArrowLeft } from 'lucide-react';
 import { mockActivities } from '../data/mockData';
 import { Activity } from '../types';
@@ -10,7 +11,7 @@ interface ActivityViewProps {
   onComplete?: () => void;
 }
 
-const ActivityView: React.FC<ActivityViewProps> = ({ 
+const ActivityView: FC<ActivityViewProps> = ({ 
   activity = mockActivities.pattern, 
   onBack,
   onComplete 

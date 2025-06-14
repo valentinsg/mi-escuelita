@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { MessageCircle } from 'lucide-react';
 
 interface GuardianCharacter {
@@ -14,7 +14,7 @@ interface GuardianMessageProps {
   customMessage?: string;
 }
 
-const GuardianMessage: React.FC<GuardianMessageProps> = ({ 
+const GuardianMessage: FC<GuardianMessageProps> = ({ 
   character, 
   context, 
   compact = false,

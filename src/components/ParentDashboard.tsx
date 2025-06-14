@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Clock, TrendingUp, AlertTriangle, Award, Play, Pause, Settings, BarChart3, Target, Calendar } from 'lucide-react';
 import { mockChild, parentRecommendations } from '../data/mockData';
-import { ParentRecommendation } from '../types';
+import { ParentRecommendation, Subject } from '../types';
 
-const ParentDashboard: React.FC = () => {
+const ParentDashboard: React.FC<{ onSubjectSelect: (subject: Subject) => void }> = ({ onSubjectSelect }) => {
   const { name, subjects, overallProgress, currentGrade, totalPlayTime } = mockChild;
   const [activeSession, setActiveSession] = useState(true);
   const [sessionTime, setSessionTime] = useState(25 * 60 + 30); // 25:30 en segundos

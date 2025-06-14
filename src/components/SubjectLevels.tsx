@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { ArrowLeft, Play, CheckCircle, Lock, Star } from 'lucide-react';
 import { Subject, Level } from '../types';
 
@@ -8,7 +8,7 @@ interface SubjectLevelsProps {
   onStartLevel: (level: Level) => void;
 }
 
-const SubjectLevels: React.FC<SubjectLevelsProps> = ({ subject, onBack, onStartLevel }) => {
+const SubjectLevels: FC<SubjectLevelsProps> = ({ subject, onBack, onStartLevel }) => {
   const getLevelStatus = (level: Level) => {
     if (level.isCompleted) return 'completed';
     if (level.isUnlocked) return 'available';
