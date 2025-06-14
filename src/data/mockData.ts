@@ -275,6 +275,42 @@ export const mockActivities: { [key: string]: Activity } = {
   }
 };
 
+// Actividades lúdicas específicas para cada grado
+export const gradeActivities: Record<string, Activity> = {
+  'curious-cow': {
+    id: 'curious-cow-activity-1',
+    title: 'El Prado de Colores',
+    instruction:
+      'Selecciona el color que completa la secuencia que observa la Vaca Curiosa',
+    narrative:
+      'La Vaca Curiosa encontró una fila de flores de distintos colores. ¡Ayúdala a descubrir cuál sigue!',
+    type: 'pattern',
+    difficulty: 'easy',
+    completed: false
+  },
+  'wise-fox': {
+    id: 'wise-fox-activity-1',
+    title: 'Historias del Zorro',
+    instruction: 'Elige la mejor opción para continuar el cuento del Zorro Sabio',
+    narrative:
+      'El Zorro Sabio está contando un cuento emocionante. Debes decidir qué sucede a continuación.',
+    type: 'word',
+    difficulty: 'medium',
+    completed: false
+  },
+  'professor-owl': {
+    id: 'professor-owl-activity-1',
+    title: 'Suma del Bosque',
+    instruction:
+      'Resuelve la operación que el Búho Profesor escribe en el pizarrón para ayudar a sus alumnos',
+    narrative:
+      'El Búho Profesor quiere comprobar tu habilidad con los números. ¿Puedes resolver la suma?',
+    type: 'math',
+    difficulty: 'hard',
+    completed: false
+  }
+};
+
 export const mockFeedback: AIFeedback = {
   message: '¡Excelente trabajo, Sofía! Completaste 3 desafíos de lógica visual seguidos.',
   recommendation: '¿Te gustaría probar algunos ejercicios de escritura ahora? ¡Tienes muy buena concentración hoy!',
