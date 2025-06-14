@@ -1,6 +1,8 @@
+// #region Importaciones
 import { Child, Subject, Activity, AIFeedback, Grade, Level, Achievement, ParentRecommendation } from '../types';
+// #endregion
 
-// Sistema de Grados Simbólicos
+// #region Sistema de Grados Simbólicos
 export const grades: Grade[] = [
   {
     id: 'curious-cow',
@@ -63,8 +65,9 @@ export const grades: Grade[] = [
     requiredProgress: 80
   }
 ];
+// #endregion
 
-// Template de Niveles por Materia
+// #region Template de Niveles por Materia
 const createLevels = (subjectId: string): Level[] => {
   const levelTemplates = {
     'visual-logic': [
@@ -138,7 +141,7 @@ const createLevels = (subjectId: string): Level[] => {
   };
 
   const templates = levelTemplates[subjectId as keyof typeof levelTemplates] || [];
-  
+
   return templates.map((template, index) => ({
     id: `${subjectId}-level-${index + 1}`,
     name: template.name,
@@ -157,7 +160,9 @@ const createLevels = (subjectId: string): Level[] => {
     requiredScore: 80
   }));
 };
+// #endregion
 
+// #region Datos simulados de usuario
 export const mockChild: Child = {
   id: '1',
   name: 'Sofía',
@@ -234,8 +239,10 @@ export const mockChild: Child = {
     }
   ]
 };
+// #endregion
 
 // Actividades con diferentes tipos y narrativas
+// #region Actividades de ejemplo
 export const mockActivities: { [key: string]: Activity } = {
   pattern: {
     id: 'pattern-1',
@@ -274,6 +281,7 @@ export const mockActivities: { [key: string]: Activity } = {
     completed: false
   }
 };
+// #endregion
 
 export const mockFeedback: AIFeedback = {
   message: '¡Excelente trabajo, Sofía! Completaste 3 desafíos de lógica visual seguidos.',
@@ -283,6 +291,7 @@ export const mockFeedback: AIFeedback = {
   context: 'completion'
 };
 
+// #region Recomendaciones para padres
 export const parentRecommendations: ParentRecommendation[] = [
   {
     id: '1',
@@ -315,8 +324,10 @@ export const parentRecommendations: ParentRecommendation[] = [
     actionable: true
   }
 ];
+// #endregion
 
 // Sistema de frases contextuales para la IA
+// #region Frases contextuales para la IA
 export const getContextualPhrase = (context: string, character: string = 'cow'): string => {
   const phrases = {
     cow: {
@@ -377,3 +388,4 @@ export const getContextualPhrase = (context: string, character: string = 'cow'):
   
   return contextPhrases[Math.floor(Math.random() * contextPhrases.length)];
 };
+// #endregion

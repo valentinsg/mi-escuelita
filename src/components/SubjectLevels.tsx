@@ -1,14 +1,19 @@
+// #region Importaciones
 import React from 'react';
 import { ArrowLeft, Play, CheckCircle, Lock, Star } from 'lucide-react';
 import { Subject, Level } from '../types';
+// #endregion
 
+// #region Tipado de props
 interface SubjectLevelsProps {
   subject: Subject;
   onBack: () => void;
   onStartLevel: (level: Level) => void;
 }
+// #endregion
 
 const SubjectLevels: React.FC<SubjectLevelsProps> = ({ subject, onBack, onStartLevel }) => {
+  // #region Funciones de apoyo
   const getLevelStatus = (level: Level) => {
     if (level.isCompleted) return 'completed';
     if (level.isUnlocked) return 'available';
@@ -40,7 +45,9 @@ const SubjectLevels: React.FC<SubjectLevelsProps> = ({ subject, onBack, onStartL
         return 'bg-white border-gray-200';
     }
   };
+  // #endregion
 
+  // #region Renderizado
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4">
       <div className="max-w-md mx-auto space-y-6">
@@ -186,6 +193,7 @@ const SubjectLevels: React.FC<SubjectLevelsProps> = ({ subject, onBack, onStartL
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default SubjectLevels;

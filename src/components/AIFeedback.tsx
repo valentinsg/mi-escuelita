@@ -1,15 +1,20 @@
+// #region Importaciones
 import React, { useState } from 'react';
 import { MessageCircle, ArrowRight, RotateCcw, Star, Trophy, Target, Zap } from 'lucide-react';
 import { mockFeedback, getContextualPhrase, mockChild } from '../data/mockData';
 import GuardianMessage from './GuardianMessage';
+// #endregion
 
 const AIFeedback: React.FC = () => {
+  // #region Estado local
   const [currentCharacter, setCurrentCharacter] = useState<'cow' | 'fox' | 'owl'>('cow');
-  
+  // #endregion
+
+  // #region Definición de personajes
   const characters = {
-    cow: { 
-      emoji: '🐄', 
-      name: 'Vaca Curiosa', 
+    cow: {
+      emoji: '🐄',
+      name: 'Vaca Curiosa',
       color: 'from-green-400 to-blue-400',
       personality: 'Curiosa y exploradora'
     },
@@ -27,8 +32,12 @@ const AIFeedback: React.FC = () => {
     }
   };
 
+  // #endregion
+
+  // #region Datos derivados
   const currentChar = characters[currentCharacter];
   const { currentGrade } = mockChild;
+  // #endregion
 
   // Generar mensaje contextual basado en el progreso
   const generateContextualMessage = () => {
@@ -37,6 +46,7 @@ const AIFeedback: React.FC = () => {
     return getContextualPhrase(randomContext, currentCharacter);
   };
 
+  // #region Renderizado
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-50 p-4">
       <div className="max-w-md mx-auto space-y-6">
@@ -215,6 +225,7 @@ const AIFeedback: React.FC = () => {
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default AIFeedback;

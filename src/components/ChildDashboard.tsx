@@ -1,17 +1,24 @@
+// #region Importaciones
 import React from 'react';
 import { Star, BookOpen, Trophy, ChevronRight, Clock } from 'lucide-react';
 import { mockChild } from '../data/mockData';
 import GuardianMessage from './GuardianMessage';
+// #endregion
 
 const ChildDashboard: React.FC = () => {
+  // #region Datos del niño
   const { name, avatar, currentGrade, overallProgress, subjects, achievements, totalPlayTime } = mockChild;
+  // #endregion
 
+  // #region Utilidades
   const formatPlayTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
   };
+  // #endregion
 
+  // #region Renderizado
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4">
       <div className="max-w-md mx-auto space-y-6">
@@ -158,6 +165,7 @@ const ChildDashboard: React.FC = () => {
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default ChildDashboard;
