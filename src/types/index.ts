@@ -1,3 +1,4 @@
+// #region Entidades principales
 export interface Child {
   id: string;
   name: string;
@@ -93,3 +94,4 @@ export interface SessionData {
   activitiesCompleted: number;
   currentStreak: number;
 }
+// #endregion

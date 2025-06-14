@@ -1,13 +1,18 @@
+// #region Importaciones
 import React, { useState } from 'react';
 import { Clock, TrendingUp, AlertTriangle, Award, Play, Pause, Settings, BarChart3, Target, Calendar } from 'lucide-react';
 import { mockChild, parentRecommendations } from '../data/mockData';
 import { ParentRecommendation } from '../types';
+// #endregion
 
 const ParentDashboard: React.FC = () => {
+  // #region Datos e indicadores
   const { name, subjects, overallProgress, currentGrade, totalPlayTime } = mockChild;
   const [activeSession, setActiveSession] = useState(true);
   const [sessionTime, setSessionTime] = useState(25 * 60 + 30); // 25:30 en segundos
+  // #endregion
 
+  // #region Utilidades
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -37,11 +42,13 @@ const ParentDashboard: React.FC = () => {
       default: return <TrendingUp className="text-blue-500" size={20} />;
     }
   };
+  // #endregion
 
   const toggleSession = () => {
     setActiveSession(!activeSession);
   };
 
+  // #region Renderizado
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-4">
       <div className="max-w-md mx-auto space-y-6">
@@ -272,6 +279,7 @@ const ParentDashboard: React.FC = () => {
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default ParentDashboard;

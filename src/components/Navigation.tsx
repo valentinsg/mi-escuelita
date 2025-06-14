@@ -1,19 +1,26 @@
+// #region Importaciones
 import React from 'react';
 import { Home, BookOpen, Users, MessageCircle } from 'lucide-react';
+// #endregion
 
+// #region Tipado de props
 interface NavigationProps {
   currentScreen: string;
   onScreenChange: (screen: string) => void;
 }
+// #endregion
 
 const Navigation: React.FC<NavigationProps> = ({ currentScreen, onScreenChange }) => {
+  // #region Definición de elementos de navegación
   const navItems = [
     { id: 'child', label: 'Niño', icon: Home, color: 'text-blue-500' },
     { id: 'activity', label: 'Actividad', icon: BookOpen, color: 'text-green-500' },
     { id: 'parent', label: 'Padres', icon: Users, color: 'text-purple-500' },
     { id: 'feedback', label: 'IA', icon: MessageCircle, color: 'text-orange-500' }
   ];
+  // #endregion
 
+  // #region Renderizado
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 px-4 py-2 z-50">
       <div className="flex justify-around items-center max-w-md mx-auto">
@@ -46,6 +53,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentScreen, onScreenChange }
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default Navigation;

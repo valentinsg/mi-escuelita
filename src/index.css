@@ -1,3 +1,5 @@
+/* #region Capa base de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* #endregion */

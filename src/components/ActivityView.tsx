@@ -1,26 +1,32 @@
+// #region Importaciones
 import React, { useState } from 'react';
 import { HelpCircle, CheckCircle, ArrowRight, Volume2, ArrowLeft } from 'lucide-react';
 import { mockActivities } from '../data/mockData';
 import { Activity } from '../types';
 import GuardianMessage from './GuardianMessage';
+// #endregion
 
+// #region Tipado de props
 interface ActivityViewProps {
   activity?: Activity;
   onBack?: () => void;
   onComplete?: () => void;
 }
+// #endregion
 
-const ActivityView: React.FC<ActivityViewProps> = ({ 
-  activity = mockActivities.pattern, 
+const ActivityView: React.FC<ActivityViewProps> = ({
+  activity = mockActivities.pattern,
   onBack,
-  onComplete 
+  onComplete
 }) => {
+  // #region Estado local
   const [selectedPattern, setSelectedPattern] = useState<number | null>(null);
   const [completed, setCompleted] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [needsHelp, setNeedsHelp] = useState(false);
+  // #endregion
 
-  // Datos específicos por tipo de actividad
+  // #region Datos específicos por tipo de actividad
   const activityData = {
     pattern: {
       patterns: [
@@ -51,9 +57,12 @@ const ActivityView: React.FC<ActivityViewProps> = ({
       ]
     }
   };
+  // #endregion
 
+  // Patrón actual seleccionado
   const currentPattern = activityData.pattern.patterns[0];
 
+  // #region Manejadores
   const handleOptionSelect = (option: string) => {
     if (option === currentPattern.answer) {
       setCompleted(true);
@@ -69,6 +78,7 @@ const ActivityView: React.FC<ActivityViewProps> = ({
     setNeedsHelp(true);
     setTimeout(() => setNeedsHelp(false), 3000);
   };
+  // #endregion
 
   const renderActivityContent = () => {
     switch (activity.type) {
@@ -168,7 +178,9 @@ const ActivityView: React.FC<ActivityViewProps> = ({
         );
     }
   };
+  // #endregion
 
+  // #region Renderizado principal
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
       <div className="max-w-md mx-auto space-y-6">
@@ -273,6 +285,7 @@ const ActivityView: React.FC<ActivityViewProps> = ({
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default ActivityView;

@@ -1,6 +1,9 @@
+// #region Importaciones
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
+// #endregion
 
+// #region Tipos
 interface GuardianCharacter {
   name: string;
   emoji: string;
@@ -13,13 +16,15 @@ interface GuardianMessageProps {
   compact?: boolean;
   customMessage?: string;
 }
+// #endregion
 
-const GuardianMessage: React.FC<GuardianMessageProps> = ({ 
-  character, 
-  context, 
+const GuardianMessage: React.FC<GuardianMessageProps> = ({
+  character,
+  context,
   compact = false,
-  customMessage 
+  customMessage
 }) => {
+  // #region Funciones de apoyo
   const getRandomPhrase = () => {
     if (customMessage) return customMessage;
     return character.phrases[Math.floor(Math.random() * character.phrases.length)];
@@ -37,8 +42,10 @@ const GuardianMessage: React.FC<GuardianMessageProps> = ({
         return 'from-blue-400 to-purple-400';
     }
   };
+  // #endregion
 
   if (compact) {
+    // #region Versión compacta
     return (
       <div className="bg-white rounded-2xl p-4 shadow-md">
         <div className="flex items-center space-x-3">
@@ -54,7 +61,9 @@ const GuardianMessage: React.FC<GuardianMessageProps> = ({
       </div>
     );
   }
+  // #endregion
 
+  // #region Versión completa
   return (
     <div className="bg-white rounded-3xl p-6 shadow-lg">
       <div className="text-center mb-4">
@@ -77,6 +86,7 @@ const GuardianMessage: React.FC<GuardianMessageProps> = ({
       </div>
     </div>
   );
+  // #endregion
 };
 
 export default GuardianMessage;
